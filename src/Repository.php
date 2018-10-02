@@ -3,6 +3,7 @@
 namespace Wearesho\Notifications;
 
 use GuzzleHttp;
+use Wearesho\Notifications\Exceptions\InvalidNotification;
 
 /**
  * Class Repository
@@ -22,6 +23,14 @@ class Repository
         $this->guzzleClient = $client;
     }
 
+    /**
+     * @param int $userId
+     * @return string
+     * @throws Exceptions\InvalidCredentials
+     * @throws Exceptions\InvalidResponse
+     * @throws Exceptions\MissingCredentials
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
     public function authorize(int $userId): string
     {
         try {
@@ -66,9 +75,54 @@ class Repository
         return $body['token'];
     }
 
+    /**
+     * @param Notification $notification
+     * @throws Exceptions\InvalidCredentials
+     * @throws Exceptions\MissingCredentials
+     * @throws InvalidNotification
+     * @throws GuzzleHttp\Exception\GuzzleException
+     */
     public function push(Notification $notification): void
     {
+        try {
+            $this->guzzleClient->send(
+                new GuzzleHttp\Psr7\Request(
+                    'POST',
+                    rtrim($this->config->getUrl(), '/') . '/service/notification',
+                    $this->getHeaders(),
+                    json_encode($notification->jsonSerialize())
+                )
+            );
+        } catch (GuzzleHttp\Exception\RequestException $exception) {
+            $response = $exception->getResponse();
+            if (!$response) {
+                throw $exception;
+            }
 
+            switch ($response->getStatusCode()) {
+                case 401:
+                    throw new Exceptions\MissingCredentials(
+                        "Missing service key",
+                        0,
+                        $exception
+                    );
+                case 403:
+                    throw new Exceptions\InvalidCredentials(
+                        "Invalid service key passed",
+                        0,
+                        $exception
+                    );
+                case 400:
+                    throw new InvalidNotification(
+                        $notification,
+                        $exception->getMessage(),
+                        $exception->getCode(),
+                        $exception
+                    );
+            }
+
+            throw $exception;
+        }
     }
 
     protected function getHeaders(): array

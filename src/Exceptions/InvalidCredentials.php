@@ -8,5 +8,4 @@ namespace Wearesho\Notifications\Exceptions;
  */
 class InvalidCredentials extends \Exception
 {
-
 }

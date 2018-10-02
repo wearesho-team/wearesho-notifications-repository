@@ -29,13 +29,13 @@ class Notification implements \JsonSerializable
     public function __construct(
         int $user,
         string $message,
-        array $context = [],
+        array $context = null,
         string $type = null,
         \DateTime $time = null,
         bool $read = false
     ) {
         $this->user = $user;
-        $this->setType($type);
+        $this->type = $type;
         $this->message = $message;
         $this->context = $context;
         $this->time = $time;
@@ -50,24 +50,6 @@ class Notification implements \JsonSerializable
     public function getType(): ?string
     {
         return $this->type;
-    }
-
-    protected function setType(string $type = null): Notification
-    {
-        if ($type && !in_array($type, [
-            Notification\Type::SUCCESS,
-            Notification\Type::DANGER,
-            Notification\Type::INFO,
-            Notification\Type::PRIMARY,
-            Notification\Type::SECONDARY,
-            Notification\Type::WARNING,
-        ])) {
-            throw new \InvalidArgumentException("Invalid notification type {$type}");
-        }
-
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getMessage(): string
@@ -85,7 +67,7 @@ class Notification implements \JsonSerializable
         return $this->read;
     }
 
-    public function getContext(): array
+    public function getContext(): ?array
     {
         return $this->context;
     }
@@ -95,7 +77,7 @@ class Notification implements \JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return [
+        $data = [
             'user' => $this->user,
             'type' => $this->type,
             'message' => $this->message,
@@ -103,5 +85,9 @@ class Notification implements \JsonSerializable
             'read' => $this->read,
             'context' => $this->context,
         ];
+
+        return array_filter($data, function ($value) {
+            return !is_null($value);
+        });
     }
 }

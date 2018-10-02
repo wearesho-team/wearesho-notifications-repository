@@ -3,7 +3,6 @@
 namespace Wearesho\Notifications\Exceptions;
 
 use Psr\Http\Message\ResponseInterface;
-use Throwable;
 
 /**
  * Class InvalidResponse
@@ -14,7 +13,7 @@ class InvalidResponse extends \Exception
     /** @var ResponseInterface */
     protected $response;
 
-    public function __construct(ResponseInterface $response, int $code = 0, Throwable $previous = null)
+    public function __construct(ResponseInterface $response, int $code = 0, \Throwable $previous = null)
     {
         $message = 'Invalid response from server: ' . (string)$response->getBody();
         parent::__construct($message, $code, $previous);

@@ -2,7 +2,6 @@
 
 namespace Wearesho\Notifications\Exceptions;
 
-use Throwable;
 use Wearesho\Notifications\Notification;
 
 /**
@@ -14,10 +13,13 @@ class InvalidNotification extends \Exception
     /** @var Notification */
     protected $notification;
 
-    public function __construct(Notification $notification, string $message, int $code = 0, Throwable $previous = null)
+    public function __construct(Notification $notification, string $message, int $code = 0, \Throwable $previous = null)
     {
-        $message = "Error during saving notification: {$message}. Notification: "
+        $message = 'Error during saving notification: '
+            . $message
+            . '. Notification: '
             . json_encode($notification->jsonSerialize());
+
         parent::__construct($message, $code, $previous);
         $this->notification = $notification;
     }

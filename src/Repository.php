@@ -90,7 +90,7 @@ class Repository
                     'POST',
                     rtrim($this->config->getUrl(), '/') . '/service/notification',
                     $this->getHeaders(),
-                    json_encode($notification->jsonSerialize())
+                    json_encode($notification)
                 )
             );
         } catch (GuzzleHttp\Exception\RequestException $exception) {
@@ -113,7 +113,7 @@ class Repository
                         $exception
                     );
                 case 400:
-                    throw new InvalidNotification(
+                    throw new Exceptions\InvalidNotification(
                         $notification,
                         $exception->getMessage(),
                         $exception->getCode(),

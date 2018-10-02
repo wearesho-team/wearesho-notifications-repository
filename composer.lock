@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c92c5f06ad03afb4daaa61299b8ee27e",
+    "content-hash": "cd5376d7ab509298291c9916fab48739",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -186,6 +186,46 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "horat1us/environment-config",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horat1us/environment-config.git",
+                "reference": "1b0e74bdf2f78363b2cd511fc249d8fc86ac5149"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horat1us/environment-config/zipball/1b0e74bdf2f78363b2cd511fc249d8fc86ac5149",
+                "reference": "1b0e74bdf2f78363b2cd511fc249d8fc86ac5149",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horat1us\\Environment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Letnikow",
+                    "email": "reclamme@gmail.com"
+                }
+            ],
+            "description": "Environment Config class",
+            "time": "2018-04-20T13:53:09+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2121,6 +2161,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.2"
+    },
     "platform-dev": []
 }

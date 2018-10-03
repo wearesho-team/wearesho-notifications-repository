@@ -1,4 +1,6 @@
 # Wearesho Notifications Repository
+[![Build Status](https://travis-ci.org/wearesho-team/wearesho-notifications-repository.svg?branch=master)](https://travis-ci.org/wearesho-team/wearesho-notifications-repository)
+[![codecov](https://codecov.io/gh/wearesho-team/wearesho-notifications-repository/branch/master/graph/badge.svg)](https://codecov.io/gh/wearesho-team/wearesho-notifications-repository)
 
 This library represents a flexible adapter between your project and [Wearesho Notifications](https://github.com/wearesho-team/wearesho-notifications).
 You can either create user`s authorization token for connecting to notifications server using sockets,

@@ -1,7 +1,7 @@
 {
   "name": "wearesho-team/wearesho-notifications-repository",
   "type": "library",
-  "license": "Proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Beton",

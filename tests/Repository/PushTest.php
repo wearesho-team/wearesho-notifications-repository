@@ -57,7 +57,7 @@ class PushTest extends TestCase
     }
 
     /**
-     * @expectedException \Wearesho\Notifications\Exceptions\MissingCredentials
+     * @expectedException \Wearesho\Notifications\Exceptions\Credentials\Missed
      * @expectedExceptionMessage Missing service key
      */
     public function testMissingCredentials(): void
@@ -74,7 +74,7 @@ class PushTest extends TestCase
     }
 
     /**
-     * @expectedException \Wearesho\Notifications\Exceptions\InvalidCredentials
+     * @expectedException \Wearesho\Notifications\Exceptions\Credentials\Invalid
      * @expectedExceptionMessage Invalid service key
      */
     public function testInvalidCredentials(): void

@@ -26,9 +26,9 @@ class Repository
     /**
      * @param int $userId
      * @return string
-     * @throws Exceptions\InvalidCredentials
      * @throws Exceptions\InvalidResponse
-     * @throws Exceptions\MissingCredentials
+     * @throws Exceptions\Credentials\Invalid
+     * @throws Exceptions\Credentials\Missed
      * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function authorize(int $userId): string
@@ -52,13 +52,13 @@ class Repository
 
             switch ($response->getStatusCode()) {
                 case 401:
-                    throw new Exceptions\MissingCredentials(
+                    throw new Exceptions\Credentials\Missed(
                         "Missing service key",
                         0,
                         $exception
                     );
                 case 403:
-                    throw new Exceptions\InvalidCredentials(
+                    throw new Exceptions\Credentials\Invalid(
                         "Invalid service key passed",
                         0,
                         $exception
@@ -77,8 +77,8 @@ class Repository
 
     /**
      * @param Notification $notification
-     * @throws Exceptions\InvalidCredentials
-     * @throws Exceptions\MissingCredentials
+     * @throws Exceptions\Credentials\Invalid
+     * @throws Exceptions\Credentials\Missed
      * @throws InvalidNotification
      * @throws GuzzleHttp\Exception\GuzzleException
      */
@@ -101,13 +101,13 @@ class Repository
 
             switch ($response->getStatusCode()) {
                 case 401:
-                    throw new Exceptions\MissingCredentials(
+                    throw new Exceptions\Credentials\Missed(
                         "Missing service key",
                         0,
                         $exception
                     );
                 case 403:
-                    throw new Exceptions\InvalidCredentials(
+                    throw new Exceptions\Credentials\Invalid(
                         "Invalid service key passed",
                         0,
                         $exception

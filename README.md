@@ -71,9 +71,9 @@ This method takes user`s ID and returns authorization token for connection
 
 try {
     $authorizationToken = $repository->authorize($userId);
-} catch (Wearesho\Notifications\Exceptions\MissingCredentials $exception) {
+} catch (Wearesho\Notifications\Exceptions\Credentials\Missed $exception) {
     // Your server requires service key, but you have not passed it in config
-} catch (Wearesho\Notifications\Exceptions\InvalidCredentials $exception) {
+} catch (Wearesho\Notifications\Exceptions\Credentials\Invalid $exception) {
     // Your service key is invalid
 } catch (Wearesho\Notifications\Exceptions\InvalidResponse $exception) {
     // Unexpected service response.
@@ -127,9 +127,9 @@ Then pass it to repository
 
 try {
     $repository->push($notification);
-} catch (Wearesho\Notifications\Exceptions\MissingCredentials $exception) {
+} catch (Wearesho\Notifications\Exceptions\Credentials\Missed $exception) {
     // Your server requires service key, but you have not passed it in config
-} catch (Wearesho\Notifications\Exceptions\InvalidCredentials $exception) {
+} catch (Wearesho\Notifications\Exceptions\Credentials\Invalid $exception) {
     // Your service key is invalid
 } catch (Wearesho\Notifications\Exceptions\InvalidNotification $exception) {
     // You have been formed invalid notification

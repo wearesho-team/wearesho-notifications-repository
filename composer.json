@@ -32,5 +32,8 @@
     "lint": "./vendor/bin/phpcs --standard=PSR2 ./src ./tests",
     "phpcbf": "./vendor/bin/phpcbf --standard=PSR2 ./src ./tests",
     "test": "./vendor/bin/phpunit"
+  },
+  "suggests": {
+    "wearesho-team/yii2-wearesho-notifications-repository": "Allows you to configure library easily in yii2 application"
   }
 }

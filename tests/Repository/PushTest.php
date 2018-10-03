@@ -92,7 +92,7 @@ class PushTest extends TestCase
 
     /**
      * @expectedException \Wearesho\Notifications\Exceptions\InvalidNotification
-     * @expectedExceptionMessage Notification: {"user":1,"message":"","read":false}
+     * @expectedExceptionMessage Notification: {"user":1,"message":""}
      */
     public function testInvalidNotification(): void
     {

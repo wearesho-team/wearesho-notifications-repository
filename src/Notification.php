@@ -23,7 +23,7 @@ class Notification implements \JsonSerializable
     /** @var \DateTime|null */
     protected $time;
 
-    /** @var bool */
+    /** @var bool|null */
     protected $read;
 
     public function __construct(
@@ -32,7 +32,7 @@ class Notification implements \JsonSerializable
         array $context = null,
         string $type = null,
         \DateTime $time = null,
-        bool $read = false
+        bool $read = null
     ) {
         $this->user = $user;
         $this->type = $type;
@@ -62,7 +62,7 @@ class Notification implements \JsonSerializable
         return $this->time;
     }
 
-    public function isRead(): bool
+    public function isRead(): ?bool
     {
         return $this->read;
     }

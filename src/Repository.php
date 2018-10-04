@@ -128,6 +128,7 @@ class Repository
     protected function getHeaders(): array
     {
         return [
+            'Content-Type' => 'application/json',
             'X-Authorization' => $this->config->getServiceKey(),
         ];
     }

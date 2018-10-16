@@ -9,7 +9,7 @@ use Wearesho\Notifications\Exceptions\InvalidNotification;
  * Class Repository
  * @package Wearesho\Notifications
  */
-class Repository
+class Repository implements Authorize, Push
 {
     /** @var ConfigInterface */
     protected $config;

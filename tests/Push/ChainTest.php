@@ -24,4 +24,14 @@ class ChainTest extends TestCase
         $this->assertEquals($notification, $mock->history[0]);
         $this->assertEquals($notification, $mock->history[1]);
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Can not add Chain into self
+     */
+    public function testChainRecursionProtection(): void
+    {
+        $chain = new Notifications\Push\Chain();
+        $chain->add($chain);
+    }
 }

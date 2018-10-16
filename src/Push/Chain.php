@@ -24,9 +24,12 @@ class Chain implements Notifications\Push
         }
     }
 
-    public function add(Notifications\Push $push)
+    public function add(Notifications\Push $element)
     {
-        $this->chain[] = $push;
+        if ($element === $this) {
+            throw new \InvalidArgumentException("Can not add Chain into self");
+        }
+        $this->chain[] = $element;
     }
 
     /**

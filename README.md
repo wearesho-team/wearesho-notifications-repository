@@ -139,3 +139,35 @@ try {
 }
 
 ```
+
+#### Push chain
+You can push notifications to different notification servers 
+using [Push\Chain](./src/Push/Chain.php).
+It's quite useful in use in pair with [Push\Filter](./src/Push/Filter.php).
+
+```php
+<?php
+
+use Wearesho\Notifications;
+
+/** @var Notifications\Repository $repoFirst */
+/** @var Notifications\Repository $repoSecond */
+
+$chain = new Notifications\Push\Chain([
+    new Notifications\Push\Filter(
+        $repoFirst,
+        $types = [
+            'primary',
+        ]
+    ),
+    $repoSecond
+]);
+
+/** @var Notifications\Notification $notification */
+
+$chain->push($notification);
+
+```
+In this example notifications will be pushed to first and second repository
+if notification has `primary` type, or only to second if notification has
+another type.
